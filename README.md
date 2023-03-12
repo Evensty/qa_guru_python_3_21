@@ -23,7 +23,7 @@ To run available tests from this project, in addition to 1-3 steps from [«Demo 
    If you want to set up more than one device at once, you have to decide which device to use for tests, get its id from the result of running `adb devices` command and add a `udid=<YOUR_DEVICE_ID>` to the `config.local.env` file.
 6. Run tests either from PyCharm or from unix terminal (on Windows, use Git Bash or [WSL](https://learn.microsoft.com/ru-ru/windows/wsl/install))
    ```bash
-   pytest tests/android/patched_style/test_wikipedia.py --alluredir reports/
+   pytest tests/android/patched_style/test_wikipedia_browserstack.py --alluredir reports/
    ```
    
 ### Run existing tests against browserstack
@@ -34,7 +34,7 @@ In addition to 1-5 steps from [«Demo Sample»](#demo-sample), do:
 7. Inside `config.personal.env`, set `browserstack.userName` and `browserstack.accessKey` to your values, got on step 5.
 8. Run tests from unix terminal (on Windows, use Git Bash or [WSL](https://learn.microsoft.com/ru-ru/windows/wsl/install))
    ```bash
-   env -S 'context=personal' pytest tests/android/patched_style/test_wikipedia.py --alluredir reports/
+   env -S 'context=personal' pytest tests/android/patched_style/test_wikipedia_browserstack.py --alluredir reports/
    ```
 
 #### More commandline Tips&Tricks
@@ -42,7 +42,7 @@ In addition to 1-5 steps from [«Demo Sample»](#demo-sample), do:
 Notice that, when running from terminal, you can «overwrite» the existing env file, by providing all needed options also by calling a `env` command (available in unix terminals like Git Bash or [WSL](https://learn.microsoft.com/ru-ru/windows/wsl/install)) 
 
 ```bash
-env -S "app='bs://c700ce60cf13ae8ed97705a55b8e022f13c5827c' appName='org.wikipedia.alpha' remote_url='http://hub.browserstack.com/wd/hub' browserstack.userName='harrypotter_qiHHSb' browserstack.accessKey='fSnAmPdKHW2xsDkV95Zs'" pytest tests/android/patched_style/test_wikipedia.py --alluredir reports/
+env -S "app='bs://c700ce60cf13ae8ed97705a55b8e022f13c5827c' appName='org.wikipedia.alpha' remote_url='http://hub.browserstack.com/wd/hub' browserstack.userName='harrypotter_qiHHSb' browserstack.accessKey='fSnAmPdKHW2xsDkV95Zs'" pytest tests/android/patched_style/test_wikipedia_browserstack.py --alluredir reports/
 ```
 
 Or you can store all needed options values in a different `config.*.env` file, where * is one of values defined (you can extend them, of course) in config.py at the following lines:
@@ -56,13 +56,13 @@ EnvContext = Literal['personal', 'test', 'stage', 'prod']
 Hence, instead of using config.personal.env, you can create, for example the `config.stage.env` file, store there all needed options, and then run tests by something like:
 
 ```bash
-env -S "context=stage" pytest tests/android/patched_style/test_wikipedia.py --alluredir reports/
+env -S "context=stage" pytest tests/android/patched_style/test_wikipedia_browserstack.py --alluredir reports/
 ```
 
 You also can run tests and execute allure reports in «one shot» by something like:
 
 ```bash
-env -S "context=stage" pytest tests/android/patched_style/test_wikipedia.py --alluredir reports/; allure serve /reports
+env -S "context=stage" pytest tests/android/patched_style/test_wikipedia_browserstack.py --alluredir reports/; allure serve /reports
 ```
 
 ### FAQ

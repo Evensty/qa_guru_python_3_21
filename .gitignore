@@ -128,3 +128,8 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+/tests/allure-results/
+/app-alpha-universal-release.apk
+/config.emulation.env
+/config.real.env
+/allure-results/
